@@ -1,0 +1,16 @@
+.lblfont {
+	font-size: 15px;
+	font-weight: normal; !important;
+}
+
+.form-control{
+	border-radius: 5px;
+}
+
+[class^='select2'] {
+  border-radius: 5px !important;
+}
+
+.alert-info {
+	border-radius: 5px !important;
+}

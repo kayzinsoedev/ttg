@@ -1,0 +1,172 @@
+.bg-color1 {
+	background-color: #36465D;
+}
+.bg-color1-darker {
+	background-color: #2F3D51;
+}
+.color-color1 {
+	color: #027458;
+}
+.border-color1 {
+	border: 1px solid #36465D;
+}
+
+/*.border-bottom {
+	border-bottom: 1px solid #837e8c;
+}*/
+
+.bg-color2 {
+	background-color: #cdc54b;
+}
+.bg-white {
+	background-color: #ffffff;
+}
+.color-color2 {
+	color: #dddddd;
+}
+.color-black {
+	color: #000000;
+}
+
+.bg-cool {
+  background-color: #36465D;
+}
+.border-cool {
+	border: 1px solid #36465D;
+}
+.bg-cooler {
+	background-color: #2F3D51;
+}
+
+.bg-white {
+	background-color: #fff;
+}
+.color-white {
+	color: #fff;
+}
+
+.bg-grey {
+	background-color: #dcdbdb;
+}
+
+.bg-lightblue {
+	background-color: #529ECC;
+}
+.border-lightblue {
+	border-color: #529ECC;
+}
+.border-rad-4 {
+	border-radius: 4px;
+}
+.border-none {
+	border: none;
+}
+
+.border-btm-grey {
+	border-bottom: 1px dotted #ddd;
+}
+
+.navbar-default .navbar-nav > li > a {
+color: #dddddd !important;
+}
+.btn-go:active, .btn-go:hover, .btn-go:focus {
+	color:#fff;
+	background-color: #529ECC;
+	border-color: #529ECC;
+}
+.bx-shadow {
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.pd-0 {
+	padding: 0 0 0 0;
+}
+.pd-top-5 {
+	padding-top: 5px;
+}
+.pd-top-7 {
+	padding-top: 7px;
+}
+.pd-top-10 {
+	padding-top: 10px;
+}
+.pd-top-20 {
+	padding-top: 20px;
+}
+.pd-top-25 {
+	padding-top: 25px;
+}
+.pd-top-64 {
+	padding-top: 64px;
+}
+.pd-bottom-5 {
+	padding-bottom: 5px;
+}
+.pd-bottom-7 {
+	padding-bottom: 7px;
+}
+.pd-bottom-10 {
+	padding-bottom: 10px;
+}
+.pd-bottom-20 {
+	padding-bottom: 20px;
+}
+.pd-bottom-64 {
+	padding-bottom: 64px;
+}
+.mg-top-5 {
+	margin-top: 5px !important;
+}
+.mg-top-20 {
+	margin-top: 20px !important;
+}
+.mg-top-75 {
+	margin-top: 75px;
+}
+.mg-bot-30 {
+	margin-bottom: 30px;
+}
+.mg-tb-30 {
+	margin:30px 0px;
+}
+.vtali-middle {
+	vertical-align: middle !important;
+}
+.f-17 {
+	font-size: 17px;
+}
+.f-40 {
+	font-size: 40px;
+}
+
+.img-container {
+	position:relative;
+    width:auto;
+    height:400px;
+    border-radius:0px;
+    /*border:1px solid red;*/
+    overflow:hidden;
+}
+
+.media-body > a:hover {
+	text-decoration: none;
+	color:#d2d8d7;
+}
+
+.color-box {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.color-block {
+	float: left;
+	width: 30px;
+	height: 30px;
+}
+
+.add-to-cart{
+	width: 100%;
+	text-transform: uppercase;
+}
