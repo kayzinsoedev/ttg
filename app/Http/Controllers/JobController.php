@@ -22,7 +22,7 @@ class JobController extends Controller
     public function store(Request $request){
         $validatedData = $request->validate([
            'name' => 'required',
-           'place' => 'required',
+           // 'place' => 'required',
            'quantity' => 'required',
            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
