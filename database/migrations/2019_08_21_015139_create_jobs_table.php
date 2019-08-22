@@ -18,7 +18,7 @@ class CreateJobsTable extends Migration
             $table->integer('user_id');
             $table->string('name');
             $table->string('place')->nullable();
-            $table->string('address');
+            $table->string('address')->nullable();
             $table->integer('quantity');
             $table->string('postalcode');
             $table->boolean('decresed')->default(0);
