@@ -18,7 +18,7 @@
 	</div>
 </div>
 
-<div class="row">
+<div class="row job">
 	<div class="col-md-12">
       <div class="box-header with-border">
 				<div class="col-md-10">
@@ -30,11 +30,6 @@
       </div>
       <div class="box-body">
           <div class="row">
-						<?php
-								// require __DIR__ . "/vendor/autoload.php";
-								// $qrcode = new QrReader(base_url('images/qr/qr-code.png'));
-								// $text = $qrcode->text(); //return decoded text from QR Code
-						?>
           	<table id="example" class="table table-striped table-bordered" style="width:100%">
                   <thead>
                       <tr>
@@ -42,7 +37,7 @@
                           <th>Place</th>
                           <th>Image</th>
 													<th>Quantity</th>
-													<th>Status</th>
+													<!-- <th>Status</th> -->
                           <th>Action</th>
                       </tr>
                  </thead>
@@ -53,14 +48,22 @@
                             <td>{{$job->name}}</td>
                             <td>{{$job->place}}</td>
                             <td><img class="img-rounded img-responsive" src="{{ asset('/images/jobs/' . $job->image ) }}" alt="..." style="width:60px;height: 60px;"></td>
-														<td>{{$job->quantity}}</td>
-                            <td>
+														<td>
+															@if( ($job->decresed == '1') && ($job->quantity != '0')  )
+																 {{$job->quantity}} <small class="label btn btn-warning btn-flat"> map in holder is decresed </small>
+														  @elseif( $job->quantity == '0' )
+																	<small class="label btn btn-danger btn-flat"> map in holder is empty </small>
+															@elseif( ($job->quantity != '0') &&  ( $job->decresed != '1') )
+																{{$job->quantity}} <small class="label btn btn-success btn-flat"> map in holder is still full </small>
+															@endif
+														</td>
+                            <!-- <td>
 																@if(isset($job->deleted_at))
 																	<small class="label bg-red">Inactive</small>
 																@else
 																	<small class="label bg-green">Active</small>
 																@endif
-														</td>
+														</td> -->
 														<td>
 															<a href="{{url('job/'. $job->id . '/edit')}}" class="btn btn-warning btn-flat"><i class="fa fa-edit" style=""> </i></a>
 															@if(isset($job->deleted_at))

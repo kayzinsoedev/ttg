@@ -10,7 +10,7 @@ use Auth;
 class JobController extends Controller
 {
     public function index(){
-      $jobs = Job::withTrashed()->get();
+      $jobs = Job::withTrashed()->where('user_id',Auth::user()->id)->get();
       return view('job.index',compact('jobs'));
     }
 
@@ -31,6 +31,7 @@ class JobController extends Controller
         $job->name = $request->name;
         $job->place = $request->place;
         $job->quantity = $request->quantity;
+        $job->postalcode = $request->postalcode;
         $job->image = 'default.png';
         $job->save();
 
@@ -44,7 +45,7 @@ class JobController extends Controller
             $job->image = $imageName;
             $job->save();
         }
-        flash('Job is successfully saved', 'success');
+        flash('Job is successfully created', 'success');
         return redirect('/job');
     }
 
@@ -59,6 +60,8 @@ class JobController extends Controller
         $job->name = $request->name;
         $job->place = $request->place;
         $job->quantity = $request->quantity;
+        $job->postalcode = $request->postalcode;
+        $job->decresed = '0';
         if($request->hasFile('image')) {
             $image = $request->image;
             $logoName = $id.'.png';
@@ -69,7 +72,7 @@ class JobController extends Controller
         }
 
         $job->save();
-        flash('Job is successfully update', 'success');
+        flash('Job is successfully updated', 'success');
         return redirect('/job');
     }
 

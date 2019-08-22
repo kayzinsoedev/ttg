@@ -21,5 +21,5 @@ Auth::routes();
 Route::resource('job', 'JobController');
 Route::get('job/{job}/restore', 'JobController@restore');
 
-Route::get('view/{place}', 'ViewController@index');
-Route::post('thankyou/{place}', 'ViewController@thankyou')->name('thankyou');
+Route::get('view/{postalcode}', 'ViewController@index');
+Route::post('thankyou', 'ViewController@thankyou')->name('thanks');

@@ -23,14 +23,22 @@
         <div class="col-md-1"></div>
       </div>
 
-      <form action ="{{route('thankyou',$place)}}" method="post">
+      <form action ="{{route('thanks')}}" method="post">
           <div class=col-md-4></div>
           <div class=col-md-4>
               <div class="box-body">
                 @csrf
                   <div class="row">
                     <button class ="btn btn-danger btn-flat collect">Please submit if you collect this map!</button>
-                    <input type="text" value="{{$place}}" name="place" hidden> </input>
+                    <input type="text" value="{{$postalcode}}" name="postalcode" > </input>
+										@foreach($jobs as $job)
+                    		<input type="text" value="{{$job->address}}" name="address" > </input>
+										@endforeach
+										@if(isset($emails))
+												@foreach($emails as $email)
+		                    	<input type="text" value="{{$email}}" name="emails[]" ></input>
+											  @endforeach
+										@endif
                   </div>
               </div>
           </div>
@@ -61,3 +69,11 @@
   crossorigin="anonymous"></script>
 <script src="{{ asset('vendor/adminlte/vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+
+<script>
+	$(document).ready(function() {
+			$(".collect").on("click", function(){
+					location.reload("http://localhost/ttg/public/job");
+			});
+  } );
+</script>

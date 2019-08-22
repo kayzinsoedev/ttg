@@ -62,15 +62,32 @@
 													<div class="form-group">
 														 <div class ="row">
 														 	 <div class="col-md-6">
-			                             <label for="name">Place</label>
-			                             @if(isset($job->place))
-			                                <input type="text" class="form-control" name="place" placeholder="Enter Place Name" value="{{$job->place}}">
+			                             <label for="name">Postal Code</label>
+			                             @if(isset($job->postalcode))
+			                                <input type="text" id="postalcode" class="form-control" name="postalcode" placeholder="Enter Postal Code" value="{{$job->postalcode}}" onkeyup="getAddress(this)">
 			                             @else
-			                                <input type="text" class="form-control" name="place" placeholder="Enter Place Name" value="">
+			                                <input type="text" id="postalcode" class="form-control" name="postalcode" placeholder="Enter Postal Code" value="" onkeyup="getAddress(this)">
 			                             @endif
 														 	 </div>
 
 
+																 <div class="col-md-6">
+																	 <label for="name">Address</label>
+																	 @if(isset($job->address))
+			                                <input type="text" id="address" class="form-control" name="address" placeholder="" value="{{$job->address}}">
+			                             @else
+			                                <input type="text" id="address" class="form-control" name="address" placeholder="" value="">
+			                             @endif
+			                           </div>
+													   </div>
+                          </div>
+													<?php
+
+
+														?>
+
+													<div class="form-group">
+														 <div class ="row">
 																 <div class="col-md-6">
 			 														 @if(isset($job))
 			 														 		<img id="logo" class="img-responsive" src="{{ asset('/images/jobs/' . $job->image ) }}" alt="Logo" style="width: 100px;height: 100px;margin-bottom: 10px;" />
@@ -104,10 +121,23 @@
 
 @section('js')
 <script>
-		$(function () {
-			CKEDITOR.replace('description');
-			$('#category_list').select2();
-		});
+		// $(function () {
+		// 		$('#postalcode').keyup(function() {
+		// 					var postalcode = document.getElementById("postalcode").value;
+		// 					document.getElementById("address").value = postalcode;
+		// 					// $.ajax({
+    //          //      url: "/",
+    //          //      type: "POST",
+    //          //      contentType: "html",
+    //          //      dataType: "json",
+    //          //      data: '{"postalcode": postalcode}',
+    //          //      success: function (data)
+    //          //      {
+    //          //          alert("success");
+    //          //      }
+    //          // })
+		// 		});
+		// });
 		function readURL(input) {
 				if (input.files && input.files[0]) {
 					var reader = new FileReader();
@@ -121,5 +151,17 @@
 					reader.readAsDataURL(input.files[0]);
 				}
 		}
+
+		function getAddress(input){
+			var postalcode = input.value;
+			getLnt(postalcode);
+		}
+
+		function getLnt(postalcode){
+
+				console.log(postalcode);
+
+		}
+
 </script>
 @endsection
