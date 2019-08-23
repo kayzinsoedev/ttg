@@ -120,24 +120,8 @@
 @stop
 
 @section('js')
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?&key=AIzaSyCdlahDXtrlOW0fvUyWxDKm6rLuCEUgaP4"></script>
 <script>
-		// $(function () {
-		// 		$('#postalcode').keyup(function() {
-		// 					var postalcode = document.getElementById("postalcode").value;
-		// 					document.getElementById("address").value = postalcode;
-		// 					// $.ajax({
-    //          //      url: "/",
-    //          //      type: "POST",
-    //          //      contentType: "html",
-    //          //      dataType: "json",
-    //          //      data: '{"postalcode": postalcode}',
-    //          //      success: function (data)
-    //          //      {
-    //          //          alert("success");
-    //          //      }
-    //          // })
-		// 		});
-		// });
 		function readURL(input) {
 				if (input.files && input.files[0]) {
 					var reader = new FileReader();
@@ -152,16 +136,48 @@
 				}
 		}
 
-		function getAddress(input){
-			var postalcode = input.value;
-			getLnt(postalcode);
-		}
+			function getAddress(input){
+					var postalcode = input.value;
+					// getaddr(postalcode);
+					var lat;
+			    var lng;
+			    var geocoder = new google.maps.Geocoder();
+					geocoder.geocode({ 'address': postalcode }, function (results, status) {
+	        if (status == google.maps.GeocoderStatus.OK) {
+						console.log("status ok");
+	            geocoder.geocode({'latLng': results[0].geometry.location}, function(results, status) {
+			            if (status == google.maps.GeocoderStatus.OK) {
+			                if (results[1]) {
+			                    var loc = getCityState(results);
+			                }
+			            }
+	        		});
+	        	}
+	    	  });
+			}
 
-		function getLnt(postalcode){
+			function getCityState(results){
+	        var a = results[0].address_components;
+	        var city, state;
+	        for(i = 0; i <  a.length; ++i)
+	        {
+	           var t = a[i].types;
+	           if(compIsType(t, 'administrative_area_level_1'))
+	              state = a[i].long_name; //store the state
+	           else if(compIsType(t, 'locality'))
+	              city = a[i].long_name; //store the city
+	        }
+	        return (city + ', ' + state)
+	    }
 
-				console.log(postalcode);
+			function compIsType(t, s) {
+	       for(z = 0; z < t.length; ++z)
+	          if(t[z] == s)
+	             return true;
+	       return false;
+    	}
 
-		}
+
 
 </script>
 @endsection
