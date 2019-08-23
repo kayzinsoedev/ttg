@@ -28,7 +28,7 @@ class JobNotification extends Mailable
      */
     public function build()
     {
-        return $this->from('example@example.com')
+        return $this->from('example@example.com','Mailtrap')
                     ->markdown('emails.job')
                     ->with(['address' => $this->address]);
     }
