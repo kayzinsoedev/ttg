@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Job;
 use Image;
 use Auth;
+use Postcode;
 
 class JobController extends Controller
 {
@@ -39,7 +40,7 @@ class JobController extends Controller
             $lastInsertproduct = Job::findorFail($job->id);
             $image = $request->image;
             $imageName = $lastInsertproduct->id.'.png';
-            $path = public_path('images/Jobs/' . $imageName);
+            $path = public_path('images/jobs/' . $imageName);
             // Image::make($image->getRealPath())->resize(150, 150)->encode('png')->save($path);
             Image::make($image->getRealPath())->encode('png')->save($path);
             $job->image = $imageName;
@@ -56,6 +57,25 @@ class JobController extends Controller
 
 
     public function update(Request $request,$id){
+         if(isset($request->postalcode)){
+            // $this->getLnt($request->postalcode);
+            $address = urlencode($request->postalcode);
+            // $url='https://maps.googleapis.com/maps/api/geocode/json?address=1.$address.CA&key=AIzaSyD9OyzhihG7EMV6oRvxTNDaEXL6IORHu7k';
+            $url='https://maps.googleapis.com/maps/api/geocode/json?address=1.$address.CA&key=AIzaSyD9OyzhihG7EMV6oRvxTNDaEXL6IORHu7k';
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            curl_setopt($ch, CURLOPT_URL, $url);
+            $data = curl_exec($ch);
+            dd($data);
+            curl_close($ch);
+            $source = $data;
+
+            $obj = json_decode($source);
+            $lat = $obj->results[0]->geometry->location->lat;
+            $long = $obj->results[0]->geometry->location->lng;
+
+
+         }
         $job = Job::findorFail($id);
         $job->name = $request->name;
         $job->place = $request->place;
@@ -75,6 +95,14 @@ class JobController extends Controller
         flash('Job is successfully updated', 'success');
         return redirect('/job');
     }
+
+      // function getLnt($zip){
+      //   $url = "http://maps.googleapis.com/maps/api/geocode/json?address=".urlencode($zip)."&sensor=false";
+      //   $result_string = file_get_contents($url);
+      //   // $result = json_decode($result_string, true);
+      //   dd($result_string);
+      //   // return $result['results'][0]['geometry']['location'];
+      // }
 
 
     public function destroy($id){
