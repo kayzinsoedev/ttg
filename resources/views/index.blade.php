@@ -17,8 +17,8 @@
       </div>
       <div class="col-md-12">
         <div class="col-md-1"></div>
-        <div class="col-md-10">
-            About TTG Asia Media<br>
+        <div class="col-md-10" style="font-size:1.2em;">
+            About TTG Asia Media<br><br>
             The Leading Travel and Tourism Publisher and Events Organiser In The Asia-Pacific
             Established in 1974, TTG Asia Media is at the forefront of the Asia-Pacific travel and tourism industry. Its authority encompasses the leisure trade, luxury travel, corporate travel, MICE and association domains. Through its four business groups, the company publishes leading regional trade titles for the travel industry, Singapore maps and guides for inbound tourists, organises international trade events and creates solutions that foster global business collaborations among travel industry players worldwide.
         </div>
@@ -31,14 +31,14 @@
               <div class="box-body">
                 @csrf
                   <div class="row">
-                    <button class ="btn btn-danger btn-flat collect">Please submit if you collect this map!</button>
-                    <input type="text" value="{{$postalcode}}" name="postalcode" > </input>
+                    <button class ="btn btn-danger btn-flat collect" onclick="">Please click and submit to distribute more map!</button>
+                    <input type="text" value="{{$postalcode}}" name="postalcode" id="postalcode" hidden> </input>
 										@foreach($jobs as $job)
-                    		<input type="text" value="{{$job->address}}" name="address" > </input>
+                    		<input type="text" value="{{$job->address}}" name="address" hidden> </input>
 										@endforeach
 										@if(isset($emails))
 												@foreach($emails as $email)
-		                    	<input type="text" value="{{$email}}" name="emails[]" ></input>
+		                    	<input type="text" value="{{$email}}" name="emails[]" hidden></input>
 											  @endforeach
 										@endif
                   </div>
@@ -78,4 +78,21 @@
 					location.reload("http://localhost/ttg/public/job");
 			});
   } );
+
+	// function thankyou(){
+	// 	var postalcode = $("#postalcode").val();
+	// 	$.ajax({
+	// 			 url: '../thankyou',
+	// 			 type: 'POST',
+	// 			 data: {'postalcode': postalcode},
+	// 			 contentType: 'application/json',
+	// 			 success: function(data) {
+	// 					 console.log('SUCCESS: ', data);
+	// 			 },
+	// 			 error: function(data) {
+	// 					 console.log('ERROR: ', data);
+	// 			 },
+	//  });
+	//
+	// }
 </script>

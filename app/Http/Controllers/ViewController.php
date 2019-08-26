@@ -33,15 +33,14 @@ class ViewController extends Controller
     }
 
     public function thankyou(Request $request){
-
         $quantity = Job::where('postalcode',$request->postalcode)->first()->quantity;
-        $last_quantity = ($quantity == 0 ) ? $quantity : $quantity - 1 ;
-        $address = Job::where('postalcode',$request->postalcode)->first()->address;
+        // $last_quantity = ($quantity == 0 ) ? $quantity : $quantity - 1 ;
+        $address = Job::where('postalcode',$request->postalcode)->first()->place;
         // $login_id = Auth::user()->id;
         Job::where('postalcode',$request->postalcode)
             // ->where('user_id',$login_id)
             ->update([
-              'quantity'=> $last_quantity,
+              'quantity'=> 0,
               'decresed'=> '1'
             ]);
 

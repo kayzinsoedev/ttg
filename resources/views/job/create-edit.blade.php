@@ -73,8 +73,8 @@
 
 																 <div class="col-md-6">
 																	 <label for="name">Address</label>
-																	 @if(isset($job->address))
-			                                <input type="text" id="address" class="form-control" name="address" placeholder="" value="{{$job->address}}">
+																	 @if(isset($job->place))
+			                                <input type="text" id="address" class="form-control" name="address" placeholder="" value="{{$job->place}}">
 			                             @else
 			                                <input type="text" id="address" class="form-control" name="address" placeholder="" value="">
 			                             @endif
@@ -82,7 +82,7 @@
 													   </div>
                           </div>
 													<?php
-															if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+															/*if(!empty($_SERVER['HTTP_CLIENT_IP'])){
 																	echo $_SERVER['HTTP_CLIENT_IP'];
 															}
 															echo '<br>';
@@ -110,7 +110,7 @@
 															if(!empty($_SERVER['REMOTE_ADDR'])){
 																	echo $_SERVER['REMOTE_ADDR'];
 															}
-															echo '<br>';
+															echo '<br>';*/
 
 														?>
 
@@ -131,7 +131,7 @@
                       </div>
 
                       <div class="box-footer">
-                          <button type ="submit" class ="btn bg-blue btn-flat margin">Submit</button>
+                          <button type ="submit" class ="btn bg-blue btn-flat margin" onclick="">Submit</button>
 													<a href="{{url('job')}}" class="btn bg-olive btn-flat margin"> Back </a>
                       </div>
                   </div>
@@ -148,7 +148,9 @@
 @stop
 
 @section('js')
-<script type="text/javascript" src="http://maps.google.com/maps/api/js?&key=AIzaSyCdlahDXtrlOW0fvUyWxDKm6rLuCEUgaP4"></script>
+<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?components=country:SG&key=AIzaSyCdlahDXtrlOW0fvUyWxDKm6rLuCEUgaP4"></script> -->
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?components=country:SG&key=AIzaSyCdlahDXtrlOW0fvUyWxDKm6rLuCEUgaP4"></script>
+
 <script>
 		function readURL(input) {
 				if (input.files && input.files[0]) {
@@ -164,47 +166,54 @@
 				}
 		}
 
-			function getAddress(input){
-					var postalcode = input.value;
-					// getaddr(postalcode);
-					var lat;
-			    var lng;
-			    var geocoder = new google.maps.Geocoder();
-					geocoder.geocode({ 'address': postalcode }, function (results, status) {
-	        if (status == google.maps.GeocoderStatus.OK) {
-						console.log("status 2ok");
-	            geocoder.geocode({'latLng': results[0].geometry.location}, function(results, status) {
-			            if (status == google.maps.GeocoderStatus.OK) {
-			                if (results[1]) {
-			                    var loc = getCityState(results);
-			                }
-			            }
-	        		});
-	        	}
-	    	  });
-			}
+		function getAddress(input){
+			  if($("#postalcode").val() == "" ){
+						$("#address").val("");
+				}
+				var postalcode = input.value;
+				// getaddr(postalcode);
+				var lat;
+		    var lng;
+		    var geocoder = new google.maps.Geocoder();
+				geocoder.geocode({ 'address': postalcode }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            geocoder.geocode({'latLng': results[0].geometry.location}, function(results, status) {
+		            if (status == google.maps.GeocoderStatus.OK) {
+		                if (results[1]) {
+		                    var loc = getCityState(results);
+												// console.log(loc);
+												$("#address").val(loc);
+		                }
+		            }
+        		});
+        	}
+    	  });
+		}
 
-			function getCityState(results){
-	        var a = results[0].address_components;
-	        var city, state;
-	        for(i = 0; i <  a.length; ++i)
-	        {
-	           var t = a[i].types;
-	           if(compIsType(t, 'administrative_area_level_1'))
-	              state = a[i].long_name; //store the state
-	           else if(compIsType(t, 'locality'))
-	              city = a[i].long_name; //store the city
-	        }
-	        return (city + ', ' + state)
-	    }
+		function getCityState(results){
+        var a = results[0].address_components;
+        var city, state;
+        for(i = 0; i <  a.length; ++i)
+        {
+           var t = a[i].types;
+           if(compIsType(t, 'administrative_area_level_1'))
+              state = a[i].long_name; //store the state
+           else if(compIsType(t, 'locality'))
+              city = a[i].long_name; //store the city
+        }
+        return (city + ', ' + state)
+    }
 
-			function compIsType(t, s) {
-	       for(z = 0; z < t.length; ++z)
-	          if(t[z] == s)
-	             return true;
-	       return false;
-    	}
+		function compIsType(t, s) {
+       for(z = 0; z < t.length; ++z)
+          if(t[z] == s)
+             return true;
+       return false;
+  	}
 
+		function UpdateJob(){
+
+		}
 
 
 </script>

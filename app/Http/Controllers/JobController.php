@@ -58,25 +58,25 @@ class JobController extends Controller
 
     public function update(Request $request,$id){
          /*if(isset($request->postalcode)){
-            // $this->getLnt($request->postalcode);
             $address = urlencode($request->postalcode);
 
-            $url= 'https://maps.googleapis.com/maps/api/geocode/json?components=country:AU|postal_code:600219&key=AIzaSyCzaJqv54xArHSwp5YCPhN86ZrCA2gfpQI';
+            $url= 'https://maps.googleapis.com/maps/api/geocode/json?components=country:SG|postal_code:'.$address.'&key=AIzaSyCdlahDXtrlOW0fvUyWxDKm6rLuCEUgaP4';
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
             curl_setopt($ch, CURLOPT_URL, $url);
             $data = curl_exec($ch);
-            dd($data);
+            // dd($data);
             curl_close($ch);
             $source = $data;
 
             $obj = json_decode($source);
+
             $lat = $obj->results[0]->geometry->location->lat;
             $long = $obj->results[0]->geometry->location->lng;
-         } */
+         }*/
         $job = Job::findorFail($id);
         $job->name = $request->name;
-        $job->place = $request->place;
+        $job->place = $request->address;
         $job->quantity = $request->quantity;
         $job->postalcode = $request->postalcode;
         $job->decresed = '0';
