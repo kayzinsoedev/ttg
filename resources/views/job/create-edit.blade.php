@@ -82,7 +82,35 @@
 													   </div>
                           </div>
 													<?php
+															if(!empty($_SERVER['HTTP_CLIENT_IP'])){
+																	echo $_SERVER['HTTP_CLIENT_IP'];
+															}
+															echo '<br>';
 
+															if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
+																	echo $_SERVER['HTTP_X_FORWARDED_FOR'];
+															}
+															echo '<br>';
+
+															if(!empty($_SERVER['HTTP_X_FORWARDED'])){
+																	echo $_SERVER['HTTP_X_FORWARDED'];
+															}
+															echo '<br>';
+
+															if(!empty($_SERVER['HTTP_FORWARDED_FOR'])){
+																	echo $_SERVER['HTTP_FORWARDED_FOR'];
+															}
+															echo '<br>';
+
+															if(!empty($_SERVER['HTTP_FORWARDED'])){
+																	echo $_SERVER['HTTP_FORWARDED'];
+															}
+															echo '<br>';
+
+															if(!empty($_SERVER['REMOTE_ADDR'])){
+																	echo $_SERVER['REMOTE_ADDR'];
+															}
+															echo '<br>';
 
 														?>
 
@@ -144,7 +172,7 @@
 			    var geocoder = new google.maps.Geocoder();
 					geocoder.geocode({ 'address': postalcode }, function (results, status) {
 	        if (status == google.maps.GeocoderStatus.OK) {
-						console.log("status ok");
+						console.log("status 2ok");
 	            geocoder.geocode({'latLng': results[0].geometry.location}, function(results, status) {
 			            if (status == google.maps.GeocoderStatus.OK) {
 			                if (results[1]) {
