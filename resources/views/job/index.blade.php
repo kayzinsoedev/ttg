@@ -37,7 +37,7 @@
                           <th>Place</th>
                           <th>Image</th>
 													<th>Quantity</th>
-													<!-- <th>Status</th> -->
+													<th>Status</th>
                           <th>Action</th>
                       </tr>
                  </thead>
@@ -57,13 +57,13 @@
 																{{$job->quantity}} <small class="label btn btn-success btn-flat"> map in holder is still full </small>
 															@endif
 														</td>
-                            <!-- <td>
+                            <td>
 																@if(isset($job->deleted_at))
 																	<small class="label bg-red">Inactive</small>
 																@else
 																	<small class="label bg-green">Active</small>
 																@endif
-														</td> -->
+														</td>
 														<td>
 															<a href="{{url('job/'. $job->id . '/edit')}}" class="btn btn-warning btn-flat"><i class="fa fa-edit" style=""> </i></a>
 															@if(isset($job->deleted_at))

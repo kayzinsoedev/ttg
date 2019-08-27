@@ -59,7 +59,7 @@
 
                           </div>
 
-													<div class="form-group">
+													<!-- <div class="form-group">
 														 <div class ="row">
 														 	 <div class="col-md-6">
 			                             <label for="name">Postal Code</label>
@@ -80,39 +80,21 @@
 			                             @endif
 			                           </div>
 													   </div>
+                          </div> -->
+
+													<div class="form-group">
+														 <div class ="row">
+														 	 <div class="col-md-6">
+			                             <label for="name">Place</label>
+			                             @if(isset($job->place))
+			                                <input type="text" id="address" class="form-control" name="address" placeholder="Enter Place" value="{{$job->place}}" onkeyup="">
+			                             @else
+			                                <input type="text" id="address" class="form-control" name="address" placeholder="Enter Place" value="" onkeyup="">
+			                             @endif
+														 	 </div>
+													   </div>
                           </div>
-													<?php
-															/*if(!empty($_SERVER['HTTP_CLIENT_IP'])){
-																	echo $_SERVER['HTTP_CLIENT_IP'];
-															}
-															echo '<br>';
 
-															if(!empty($_SERVER['HTTP_X_FORWARDED_FOR'])){
-																	echo $_SERVER['HTTP_X_FORWARDED_FOR'];
-															}
-															echo '<br>';
-
-															if(!empty($_SERVER['HTTP_X_FORWARDED'])){
-																	echo $_SERVER['HTTP_X_FORWARDED'];
-															}
-															echo '<br>';
-
-															if(!empty($_SERVER['HTTP_FORWARDED_FOR'])){
-																	echo $_SERVER['HTTP_FORWARDED_FOR'];
-															}
-															echo '<br>';
-
-															if(!empty($_SERVER['HTTP_FORWARDED'])){
-																	echo $_SERVER['HTTP_FORWARDED'];
-															}
-															echo '<br>';
-
-															if(!empty($_SERVER['REMOTE_ADDR'])){
-																	echo $_SERVER['REMOTE_ADDR'];
-															}
-															echo '<br>';*/
-
-														?>
 
 													<div class="form-group">
 														 <div class ="row">
@@ -150,6 +132,9 @@
 @section('js')
 <!-- <script type="text/javascript" src="http://maps.google.com/maps/api/js?components=country:SG&key=AIzaSyCdlahDXtrlOW0fvUyWxDKm6rLuCEUgaP4"></script> -->
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?components=country:SG&key=AIzaSyCdlahDXtrlOW0fvUyWxDKm6rLuCEUgaP4"></script>
+<!-- <script type="text/javascript" src="http://maps.google.com/maps/api/geocode/json?components=country:SG&sensor=false&key=AIzaSyCdlahDXtrlOW0fvUyWxDKm6rLuCEUgaP4"></script> -->
+
+
 
 <script>
 		function readURL(input) {

@@ -16,9 +16,9 @@ class JobNotification extends Mailable
      *
      * @return void
      */
-    public function __construct($address)
+    public function __construct($place)
     {
-        $this->address = $address;
+        $this->place = $place;
     }
 
     /**
@@ -30,6 +30,6 @@ class JobNotification extends Mailable
     {
         return $this->from('example@example.com','Mailtrap')
                     ->markdown('emails.job')
-                    ->with(['address' => $this->address]);
+                    ->with(['address' => $this->place]);
     }
 }

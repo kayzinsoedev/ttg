@@ -30,7 +30,7 @@ class JobController extends Controller
         $job = new Job;
         $job->user_id = Auth::user()->id;
         $job->name = $request->name;
-        $job->place = $request->place;
+        $job->place = $request->address;
         $job->quantity = $request->quantity;
         $job->postalcode = $request->postalcode;
         $job->image = 'default.png';
@@ -57,7 +57,7 @@ class JobController extends Controller
 
 
     public function update(Request $request,$id){
-         /*if(isset($request->postalcode)){
+         if(isset($request->postalcode)){
             $address = urlencode($request->postalcode);
 
             $url= 'https://maps.googleapis.com/maps/api/geocode/json?components=country:SG|postal_code:'.$address.'&key=AIzaSyCdlahDXtrlOW0fvUyWxDKm6rLuCEUgaP4';
@@ -65,15 +65,12 @@ class JobController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
             curl_setopt($ch, CURLOPT_URL, $url);
             $data = curl_exec($ch);
-            // dd($data);
             curl_close($ch);
             $source = $data;
-
             $obj = json_decode($source);
-
             $lat = $obj->results[0]->geometry->location->lat;
             $long = $obj->results[0]->geometry->location->lng;
-         }*/
+         }
         $job = Job::findorFail($id);
         $job->name = $request->name;
         $job->place = $request->address;

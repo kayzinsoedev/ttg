@@ -12,9 +12,9 @@ use App\Mail\JobNotification;
 
 class ViewController extends Controller
 {
-    public function index($postalcode){
+    public function index($place){
         // $jobs = Job::withTrashed()->where('place',$place)->get();
-        $jobs = Job::withTrashed()->where('postalcode',$postalcode)->get();
+        $jobs = Job::withTrashed()->where('place',$place)->get();
         if(count($jobs) >0){
           foreach ($jobs as $key => $job) {
             $user_ids[] = $job->user_id;
@@ -25,19 +25,18 @@ class ViewController extends Controller
           }
         }
         if(isset($emails)){
-            return view('index',compact('postalcode','jobs','emails'));
+            return view('index',compact('place','jobs','emails'));
         }else{
-            return view('index',compact('postalcode','jobs'));
+            return view('index',compact('place','jobs'));
         }
 
     }
 
     public function thankyou(Request $request){
-        $quantity = Job::where('postalcode',$request->postalcode)->first()->quantity;
-        // $last_quantity = ($quantity == 0 ) ? $quantity : $quantity - 1 ;
-        $address = Job::where('postalcode',$request->postalcode)->first()->place;
+        // $quantity = Job::where('place',$request->postalcode)->first()->quantity;
+        // $address = Job::where('place',$request->address)->first()->place;
         // $login_id = Auth::user()->id;
-        Job::where('postalcode',$request->postalcode)
+        Job::where('place',$request->place)
             // ->where('user_id',$login_id)
             ->update([
               'quantity'=> 0,
@@ -50,7 +49,7 @@ class ViewController extends Controller
         if(isset($request->emails)){
             $emails =$request->emails;
             $users = User::whereIn('email',$emails);
-            Mail::to( $emails )->send( new JobNotification($address));
+            Mail::to( $emails )->send( new JobNotification($place));
         }
         return Redirect::intended($url);
 
