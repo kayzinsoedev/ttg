@@ -20,7 +20,7 @@ class CreateJobsTable extends Migration
             $table->string('place')->nullable();
             $table->string('address')->nullable();
             $table->integer('quantity');
-            $table->string('postalcode');
+            $table->string('postalcode')->nullable();
             $table->boolean('decresed')->default(0);
             $table->string('image')->nullable();
             $table->softDeletes();
