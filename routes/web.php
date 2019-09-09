@@ -20,6 +20,9 @@ Auth::routes();
 
 Route::resource('job', 'JobController');
 Route::get('job/{job}/restore', 'JobController@restore');
+Route::group(['middleware' => 'checkIp'], function () {
+    Route::get('file/download/{job_id}', 'JobController@getDownload')->name('file.download');
+});
 
 // Route::get('view/{postalcode}', 'ViewController@index');
 Route::get('view/{place}', 'ViewController@index');

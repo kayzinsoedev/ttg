@@ -23,6 +23,7 @@ class CreateJobsTable extends Migration
             $table->string('postalcode')->nullable();
             $table->boolean('decresed')->default(0);
             $table->string('image')->nullable();
+            $table->string('file_name')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

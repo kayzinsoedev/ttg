@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'TTG Asia Travel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +179,8 @@ return [
         'Intervention\Image\ImageServiceProvider',
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        ApiPostcode\ApiPostcodeServiceProvider::class,
+        'nickurt\PostcodeApi\ServiceProvider',
 
     ],
 
@@ -231,7 +233,9 @@ return [
         'Analytics'=>Spatie\Analytics\AnalyticsFacade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'Image' => 'Intervention\Image\Facades\Image'
+        'Image' => 'Intervention\Image\Facades\Image',
+        'Postcode' => ApiPostcode\Facade\Postcode::class,
+        'PostcodeApi' => 'nickurt\PostcodeApi\Facade',
 
     ],
 

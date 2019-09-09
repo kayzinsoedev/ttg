@@ -9,7 +9,9 @@
     "license": "MIT",
     "require": {
         "php": "^7.1.3",
+        "api-postcode/api-postcode-laravel": "^1.0",
         "fideloper/proxy": "^4.0",
+        "google/apiclient": "^2.0",
         "intervention/image": "^2.5",
         "jeroennoten/laravel-adminlte": "^1.24",
         "khanamiryan/qrcode-detector-decoder": "^1.0",
@@ -17,8 +19,10 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
+        "nickurt/laravel-postcodeapi": "^1.8",
         "paypal/rest-api-sdk-php": "^1.14",
-        "spatie/laravel-analytics": "^3.6"
+        "spatie/laravel-analytics": "^3.6",
+        "league/flysystem-sftp": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

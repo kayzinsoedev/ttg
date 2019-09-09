@@ -7,6 +7,8 @@ use App\Job;
 use Image;
 use Auth;
 use Postcode;
+use Illuminate\Support\Facades\Storage;
+
 
 class JobController extends Controller
 {
@@ -26,7 +28,10 @@ class JobController extends Controller
            // 'place' => 'required',
            'quantity' => 'required',
            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+           'attach_file'=> 'mimes:doc,docx'
         ]);
+
+
         $job = new Job;
         $job->user_id = Auth::user()->id;
         $job->name = $request->name;
@@ -46,6 +51,15 @@ class JobController extends Controller
             $job->image = $imageName;
             $job->save();
         }
+
+        if( ($request->hasFile('attach_file')) &&  ($request->File('attach_file')->isValid()) ) {
+            $fileName = $job->id.'.'.$request->File('attach_file')->getClientOriginalExtension();
+            Storage::disk('sftp')->put($fileName, fopen($request->file('attach_file'), 'r+'));
+            $job = Job::findorFail($job->id);
+            $job->file_name = (isset($fileName)) ? $fileName : 'NA';
+            $job->save();
+        }
+
         flash('Job is successfully created', 'success');
         return redirect('/job');
     }
@@ -113,5 +127,28 @@ class JobController extends Controller
       $job->restore();
       flash('Job is successfully restored', 'success');
       return redirect('job');
+    }
+
+
+    public function getDownload($jobId){
+        $name = Job::findOrFail($jobId)->file_name;
+        $headers = ["Content-Type"=>"application/octet-stream"];
+
+        $exist = Storage::disk('sftp')->exists($name);
+
+        if($exist){
+          $file_list = Storage::disk('sftp')->allFiles();
+          foreach ($file_list as $key => $value) {
+            if($name == $value){
+              return Storage::disk('sftp')->download($value);
+            }
+          }
+        }
+        else{
+          return response()->json([
+                'error' => "File does not exist",
+                'location' => route('order.show', $orderId)
+            ], 200);
+        }
     }
 }

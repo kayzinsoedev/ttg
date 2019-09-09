@@ -64,6 +64,16 @@ return [
             'url' => env('AWS_URL'),
         ],
 
+        'sftp' => [
+            'driver' => 'sftp',
+            'host' => env('FTP_HOST'),
+            'username' => env('FTP_USERNAME'),
+            'password' => env('FTP_PASSWORD'),
+            'port'     => 22,
+            'privateKey' => base_path('credential/KM-PrivateKey.ppk'),
+            'root' => '/Distribution/Konica_Minolta',  //DIR_PATH_TO_WHERE_FILE_STORE
+        ],
+
     ],
 
 ];
