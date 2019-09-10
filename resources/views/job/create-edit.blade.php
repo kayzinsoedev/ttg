@@ -111,26 +111,25 @@
                           </div>
 
 
-													{{--<div class="form-group">--}}
-														 {{--<div class ="row">--}}
-																 {{--<div class="col-md-6">--}}
-			 														 {{--@if(isset($job))--}}
+													<div class="form-group">
+														 <div class ="row">
+																 <div class="col-md-6">
+			 														 @if(isset($job))
 																	 <?php
-																			 // $exists = Storage::disk('sftp')->exists($job->file_name);
+																			 $exists = Storage::disk('sftp')->exists($job->file_name);
 																	 ?>
-																		 {{--@if($exists)--}}
-																		 		{{--	{{$job->id}}--}}
-									                        {{--<small id="exist-file" class="form-text text-muted">Existing File: <a href="{{ route('file.download', $job->id) }}" > Download File</a> </small>--}}
-									                   {{--@else--}}
-									                        {{--No Files Uploaded on server.--}}
-									                   {{--@endif--}}
-			 														 {{--@else--}}
-				 														 {{--<input type="file" class="form-control" id="file" name="attach_file" value="">--}}
-			 														 {{--@endif--}}
-			                           {{--</div>--}}
-													   {{--</div>--}}
-                          {{--</div>--}}
-
+																		 @if($exists)
+																		 		{{$job->id}}
+									                        <small id="exist-file" class="form-text text-muted">Existing File: <a href="{{ route('file.download', $job->id) }}" > Download File</a> </small>
+									                   @else
+									                        No Files Uploaded on server.
+									                   @endif
+			 														 @else
+				 														 <input type="file" class="form-control" id="file" name="attach_file" value="">
+			 														 @endif
+			                           </div>
+													   </div>
+                          </div>
                       </div>
 
                       <div class="box-footer">
