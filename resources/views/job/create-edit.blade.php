@@ -59,28 +59,28 @@
 
                           </div>
 
-													<div class="form-group">
-														 <div class ="row">
-														 	 <div class="col-md-6">
-			                             <label for="name">Postal Code</label>
-			                             @if(isset($job->postalcode))
-			                                <input type="text" id="postalcode" class="form-control" name="postalcode" placeholder="Enter Postal Code" value="{{$job->postalcode}}" onkeyup="getAddress(this)">
-			                             @else
-			                                <input type="text" id="postalcode" class="form-control" name="postalcode" placeholder="Enter Postal Code" value="" onkeyup="getAddress(this)">
-			                             @endif
-														 	 </div>
+													{{--<div class="form-group">--}}
+														 {{--<div class ="row">--}}
+														 	 {{--<div class="col-md-6">--}}
+			                             {{--<label for="name">Postal Code</label>--}}
+			                             {{--@if(isset($job->postalcode))--}}
+			                                {{--<input type="text" id="postalcode" class="form-control" name="postalcode" placeholder="Enter Postal Code" value="{{$job->postalcode}}" onkeyup="getAddress(this)">--}}
+			                             {{--@else--}}
+			                                {{--<input type="text" id="postalcode" class="form-control" name="postalcode" placeholder="Enter Postal Code" value="" onkeyup="getAddress(this)">--}}
+			                             {{--@endif--}}
+														 	 {{--</div>--}}
 
 
-																 <div class="col-md-6">
-																	 <label for="name">Address</label>
-																	 @if(isset($job->place))
-			                                <input type="text" id="address" class="form-control" name="address" placeholder="" value="{{$job->place}}">
-			                             @else
-			                                <input type="text" id="address" class="form-control" name="address" placeholder="" value="">
-			                             @endif
-			                           </div>
-													   </div>
-                          </div>
+																 {{--<div class="col-md-6">--}}
+																	 {{--<label for="name">Address</label>--}}
+																	 {{--@if(isset($job->place))--}}
+			                                {{--<input type="text" id="address" class="form-control" name="address" placeholder="" value="{{$job->place}}">--}}
+			                             {{--@else--}}
+			                                {{--<input type="text" id="address" class="form-control" name="address" placeholder="" value="">--}}
+			                             {{--@endif--}}
+			                           {{--</div>--}}
+													   {{--</div>--}}
+                          {{--</div>--}}
 
 													<div class="form-group">
 														 <div class ="row">
@@ -111,25 +111,25 @@
                           </div>
 
 
-													<div class="form-group">
-														 <div class ="row">
-																 <div class="col-md-6">
-			 														 @if(isset($job))
+													{{--<div class="form-group">--}}
+														 {{--<div class ="row">--}}
+																 {{--<div class="col-md-6">--}}
+			 														 {{--@if(isset($job))--}}
 																	 <?php
-																			 $exists = Storage::disk('sftp')->exists($job->file_name);
+																			 // $exists = Storage::disk('sftp')->exists($job->file_name);
 																	 ?>
-																		 @if($exists)
-																		 			{{$job->id}}
-									                        <small id="exist-file" class="form-text text-muted">Existing File: <a href="{{ route('file.download', $job->id) }}" > Download File</a> </small>
-									                   @else
-									                        No Files Uploaded on server.
-									                   @endif
-			 														 @else
-				 														 <input type="file" class="form-control" id="file" name="attach_file" value="">
-			 														 @endif
-			                           </div>
-													   </div>
-                          </div>
+																		 {{--@if($exists)--}}
+																		 		{{--	{{$job->id}}--}}
+									                        {{--<small id="exist-file" class="form-text text-muted">Existing File: <a href="{{ route('file.download', $job->id) }}" > Download File</a> </small>--}}
+									                   {{--@else--}}
+									                        {{--No Files Uploaded on server.--}}
+									                   {{--@endif--}}
+			 														 {{--@else--}}
+				 														 {{--<input type="file" class="form-control" id="file" name="attach_file" value="">--}}
+			 														 {{--@endif--}}
+			                           {{--</div>--}}
+													   {{--</div>--}}
+                          {{--</div>--}}
 
                       </div>
 

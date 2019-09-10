@@ -179,7 +179,7 @@ return [
         'Intervention\Image\ImageServiceProvider',
         Laracasts\Flash\FlashServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        ApiPostcode\ApiPostcodeServiceProvider::class,
+        // ApiPostcode\ApiPostcodeServiceProvider::class,
         'nickurt\PostcodeApi\ServiceProvider',
 
     ],

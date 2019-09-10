@@ -32,13 +32,13 @@
                 @csrf
                   <div class="row">
                     <button class ="btn btn-danger btn-flat collect" onclick="">Please click and submit to distribute more map!</button>
-                    <input type="text" value="{{$place}}" name="place" id="place" > </input>
+                    <input type="text" value="{{$place}}" name="place" id="place" hidden > </input>
 										{{--@foreach($jobs as $job)--}}
                     		{{--<input type="text" value="{{$job->place}}" name="place" > </input>--}}
 										{{--@endforeach--}}
 										@if(isset($emails))
 												@foreach($emails as $email)
-		                    	<input type="text" value="{{$email}}" name="emails[]" ></input>
+		                    	<input type="text" value="{{$email}}" name="emails[]" hidden></input>
 											  @endforeach
 										@endif
                   </div>
