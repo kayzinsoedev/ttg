@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'TTG Asia')
 
 @section('content_header')
 @stop
@@ -37,7 +37,7 @@
                           <th>Place</th>
                           <th>Image</th>
 													<th>Quantity</th>
-													<th>Status</th>
+													<!-- <th>Status</th> -->
                           <th>Action</th>
                       </tr>
                  </thead>
@@ -52,28 +52,34 @@
 															@if( ($job->decresed == '1') && ($job->quantity != '0')  )
 																 {{$job->quantity}} <small class="label btn btn-warning btn-flat"> map in holder is decresed </small>
 														  @elseif( $job->quantity == '0' )
-																	<small class="label btn btn-danger btn-flat"> map in holder is empty </small>
+																{{--<input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" value="{{$job->quantity}}" min="1">--}}
+																{{$job->quantity}} <small class="label btn btn-danger btn-flat"> map in holder is empty </small>
 															@elseif( ($job->quantity != '0') &&  ( $job->decresed != '1') )
+																{{--<input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" value="{{$job->quantity}}" min="1">--}}
 																{{$job->quantity}} <small class="label btn btn-success btn-flat"> map in holder is still full </small>
 															@endif
 														</td>
-                            <td>
+                            <!-- <td>
 																@if(isset($job->deleted_at))
 																	<small class="label bg-red">Inactive</small>
 																@else
 																	<small class="label bg-green">Active</small>
 																@endif
-														</td>
+														</td> -->
 														<td>
-															<a href="{{url('job/'. $job->id . '/edit')}}" class="btn btn-warning btn-flat"><i class="fa fa-edit" style=""> </i></a>
+															{{--@if($job->quantity == '0')--}}
+																<a href="{{url('job/'. $job->id . '/edit')}}" class="btn btn-success btn-flat">
+																	<i class="fa fa-edit" style=""> </i>
+																	Update the quantity
+																</a>
+															{{--@endif--}}
 															@if(isset($job->deleted_at))
-															<a class="btn btn-info btn-flat" href="{{ url('job/'. $job->id . '/restore') }}"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+															<a class="btn btn-info btn-flat" href="{{ url('job/'. $job->id . '/restore') }}"><i class="fa fa-refresh" aria-hidden="true">  </i>  Restore Job</a>
 															@else
 															{{Form::open(['method'  => 'DELETE', 'route' => ['job.destroy', $job->id],])}}
-															<button class="btn btn-danger btn-flat" style="margin-left: 43px;margin-top: -56px;"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+															<button class="btn btn-danger btn-flat" style="margin-left: 163px;margin-top: -56px;"> <i class="fa fa-trash-o" aria-hidden="true"></i>  Delete Job</button>
 															{{Form::close()}}
 															@endif
-
 														</td>
                         </tr>
                       @endforeach

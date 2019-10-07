@@ -1,6 +1,6 @@
 @extends('adminlte::page')
 
-@section('title', 'Dashboard')
+@section('title', 'TTG Asia')
 
 @section('content_header')
 @stop
@@ -11,14 +11,14 @@
 	<div class="col-md-12">
       <div class="box-header with-border">
           @if(isset($job))
-            <h3 class="box-title"><b>Edit Job</b></h3>
+            <h3 class="box-title"><b>Update Job</b></h3>
           @else
             <h3 class="box-title"><b>Create Job</b></h3>
           @endif
       </div>
       <section class="content">
           <div class ="row">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 @if ($errors->any())
                     <div class="alert alert-danger">
                       <ul>
@@ -38,7 +38,7 @@
                       <div class="box-body">
                           <div class="form-group">
 														 <div class ="row">
-															 	 <div class="col-md-6">
+															 	 <div class="col-md-4">
 																		 <label for="name">Job Name </label>
 																		 @if(isset($job->name))
 																				<input type="text" class="form-control" name="name" placeholder="Enter Job Name" value="{{$job->name}}">
@@ -47,7 +47,7 @@
 																		 @endif
 															 	 </div>
 
-																 <div class="col-md-6">
+																 <div class="col-md-4">
 																		<label for="name">Quantity</label>
 																		@if(isset($job->quantity))
 																			 <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" value="{{$job->quantity}}" min="1">
@@ -55,6 +55,16 @@
 																			 <input type="number" class="form-control" name="quantity" placeholder="Enter Quantity" value="" min="1">
 																		@endif
 																 </div>
+
+
+		 														 	 <div class="col-md-4">
+	 			                             <label for="name">Place</label>
+	 			                             @if(isset($job->place))
+	 			                                <input type="text" id="address" class="form-control" name="address" placeholder="Enter Place" value="{{$job->place}}" onkeyup="">
+	 			                             @else
+	 			                                <input type="text" id="address" class="form-control" name="address" placeholder="Enter Place" value="" onkeyup="">
+	 			                             @endif
+		 														 	 </div>
 														 </div>
 
                           </div>
@@ -82,23 +92,24 @@
 													   {{--</div>--}}
                           {{--</div>--}}
 
-													<div class="form-group">
-														 <div class ="row">
-														 	 <div class="col-md-6">
-			                             <label for="name">Place</label>
-			                             @if(isset($job->place))
-			                                <input type="text" id="address" class="form-control" name="address" placeholder="Enter Place" value="{{$job->place}}" onkeyup="">
-			                             @else
-			                                <input type="text" id="address" class="form-control" name="address" placeholder="Enter Place" value="" onkeyup="">
-			                             @endif
-														 	 </div>
-													   </div>
-                          </div>
+													{{--<div class="form-group">--}}
+														 {{--<div class ="row">--}}
+														 	 {{--<div class="col-md-6">--}}
+			                             {{--<label for="name">Place</label>--}}
+			                             {{--@if(isset($job->place))--}}
+			                                {{--<input type="text" id="address" class="form-control" name="address" placeholder="Enter Place" value="{{$job->place}}" onkeyup="">--}}
+			                             {{--@else--}}
+			                                {{--<input type="text" id="address" class="form-control" name="address" placeholder="Enter Place" value="" onkeyup="">--}}
+			                             {{--@endif--}}
+														 	 {{--</div>--}}
+													   {{--</div>--}}
+                          {{--</div>--}}
 
-
+													<br>
 													<div class="form-group">
 														 <div class ="row">
 																 <div class="col-md-6">
+																	 <label for="name">QR Code</label>
 			 														 @if(isset($job))
 			 														 		<img id="logo" class="img-responsive" src="{{ asset('/images/jobs/' . $job->image ) }}" alt="Logo" style="width: 100px;height: 100px;margin-bottom: 10px;" />
 			 														 		{!! Form::file('image', array('onchange' => 'readURL(this);')); !!}
@@ -133,7 +144,7 @@
                       </div>
 
                       <div class="box-footer">
-                          <button type ="submit" class ="btn bg-blue btn-flat margin" onclick="">Submit</button>
+                          <button type ="submit" class ="btn bg-blue btn-flat margin" onclick="">Update</button>
 													<a href="{{url('job')}}" class="btn bg-olive btn-flat margin"> Back </a>
                       </div>
                   </div>
