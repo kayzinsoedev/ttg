@@ -36,6 +36,7 @@ class ViewController extends Controller
         $country  = $json['country'];
         $region   = $json['region'];
         $city     = $json['city'];
+        dd($city);
 
     }
 
