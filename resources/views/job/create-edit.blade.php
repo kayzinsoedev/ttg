@@ -109,7 +109,7 @@
 													<div class="form-group">
 														 <div class ="row">
 																 <div class="col-md-6">
-																	 <label for="name">QR Code</label>
+																	 <label for="name"></label>
 			 														 @if(isset($job))
 			 														 		<img id="logo" class="img-responsive" src="{{ asset('/images/jobs/' . $job->image ) }}" alt="Logo" style="width: 100px;height: 100px;margin-bottom: 10px;" />
 			 														 		{!! Form::file('image', array('onchange' => 'readURL(this);')); !!}

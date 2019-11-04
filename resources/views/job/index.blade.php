@@ -33,18 +33,27 @@
           	<table id="example" class="table table-striped table-bordered" style="width:100%">
                   <thead>
                       <tr>
+												  @if($admin_email == "admin@gmail.com")
+													<th>Distributor Name</th>
+													@endif
                           <th>Name</th>
                           <th>Place</th>
                           <th>Image</th>
 													<th>Quantity</th>
 													<!-- <th>Status</th> -->
                           <th>Action</th>
+													@if($admin_email == "admin@gmail.com")
+													<th>Job Status</th>
+													@endif
                       </tr>
                  </thead>
                    <tbody>
                      @if(count($jobs) >0)
                      @foreach($jobs as $job)
                         <tr>
+													  @if($admin_email == "admin@gmail.com")
+														<td>{{$job->user->name}}</td>
+														@endif
                             <td>{{$job->name}}</td>
                             <td>{{$job->place}}</td>
                             <td><img class="img-rounded img-responsive" src="{{ asset('/images/jobs/' . $job->image ) }}" alt="..." style="width:60px;height: 60px;"></td>
@@ -81,6 +90,13 @@
 															{{Form::close()}}
 															@endif
 														</td>
+														@if($admin_email == "admin@gmail.com")
+																@if(isset($job->deleted_at))
+																	<td><small class="label bg-red">Inactive</small></td>
+																@else
+																	<td><small class="label bg-green">Active</small></td>
+																@endif
+														@endif
                         </tr>
                       @endforeach
 
