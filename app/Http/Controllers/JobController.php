@@ -66,7 +66,14 @@ class JobController extends Controller
         }
 
         flash('Job is successfully created', 'success');
-        return redirect('/job');
+        if( !empty(Auth::user()->role->name)){
+           if(empty(Auth::user()->role->name == "admin"){
+              return redirect('/job');
+           }
+        }else{
+            return redirect('/job/create');
+        }
+
     }
 
     public function edit($id){
@@ -107,7 +114,13 @@ class JobController extends Controller
 
         $job->save();
         flash('Job is successfully updated', 'success');
-        return redirect('/job');
+        if( !empty(Auth::user()->role->name)){
+           if(empty(Auth::user()->role->name == "admin"){
+              return redirect('/job');
+           }
+        }else{
+            return redirect('/job/create');
+        }
     }
 
       // function getLnt($zip){
