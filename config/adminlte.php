@@ -32,7 +32,7 @@ return [
 
     'logo' => '<b>TTG</b> Asia',
 
-    'logo_mini' => '<b>C</b>Y',
+    'logo_mini' => '<b>TT</b>G',
 
     /*
     |--------------------------------------------------------------------------
@@ -95,6 +95,8 @@ return [
 
     'register_url' => 'register',
 
+    'password_reset_url' => 'passwords/reset',
+
     /*
     |--------------------------------------------------------------------------
     | Menu Items
@@ -106,7 +108,7 @@ return [
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     |
     */
-    
+
     /*
     |--------------------------------------------------------------------------
     | Menu Filters
