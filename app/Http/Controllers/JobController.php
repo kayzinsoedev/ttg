@@ -67,7 +67,7 @@ class JobController extends Controller
 
         flash('Job is successfully created', 'success');
         if( !empty(Auth::user()->role->name)){
-           if(empty(Auth::user()->role->name == "admin"){
+           if(empty(Auth::user()->role->name == "admin")){
               return redirect('/job');
            }
         }else{
@@ -115,7 +115,7 @@ class JobController extends Controller
         $job->save();
         flash('Job is successfully updated', 'success');
         if( !empty(Auth::user()->role->name)){
-           if(empty(Auth::user()->role->name == "admin"){
+           if(empty(Auth::user()->role->name == "admin")){
               return redirect('/job');
            }
         }else{
