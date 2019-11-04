@@ -13,8 +13,13 @@ use Illuminate\Support\Facades\Storage;
 class JobController extends Controller
 {
     public function index(){
-      $jobs = Job::withTrashed()->where('user_id',Auth::user()->id)->get();
-      return view('job.index',compact('jobs'));
+      $admin_email = Auth::user()->email;
+      if(Auth::user()->email == "admin@gmail.com"){
+        $jobs = Job::withTrashed()->get();
+      }else{
+        $jobs = Job::withTrashed()->where('user_id',Auth::user()->id)->get();
+      }
+      return view('job.index',compact('jobs','admin_email'));
     }
 
     public function create(){
