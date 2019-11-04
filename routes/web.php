@@ -14,10 +14,10 @@ Route::get('/', 'Auth\LoginController@showLoginForm');
 Route::post('/', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Auth::routes();
+
 
 // Route::get('/index', 'DashboardController@index');
-
+Auth::routes();
 Route::resource('job', 'JobController');
 Route::get('job/{job}/restore', 'JobController@restore');
 Route::group(['middleware' => 'checkIp'], function () {
