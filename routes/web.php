@@ -15,8 +15,6 @@ Route::post('/', 'Auth\LoginController@login');
 Route::post('/logout', 'Auth\LoginController@logout')->name('logout');
 
 
-
-// Route::get('/index', 'DashboardController@index');
 Auth::routes();
 Route::resource('job', 'JobController');
 Route::get('job/{job}/restore', 'JobController@restore');
@@ -27,3 +25,11 @@ Route::group(['middleware' => 'checkIp'], function () {
 // Route::get('view/{postalcode}', 'ViewController@index');
 Route::get('view/{place}', 'ViewController@index');
 Route::post('thankyou', 'ViewController@thankyou')->name('thanks');
+
+
+// Backend Route
+
+// User Management
+Route::resource('user','UserController');
+Route::resource('role','RoleController');
+Route::resource('permission','PermissionController');

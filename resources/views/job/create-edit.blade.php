@@ -145,7 +145,9 @@
 
                       <div class="box-footer">
                           <button type ="submit" class ="btn bg-blue btn-flat margin" onclick="">Update</button>
+													@if(!empty(Auth::user()->role->name == "admin"))
 													<a href="{{url('job')}}" class="btn bg-olive btn-flat margin"> Back </a>
+													@endif
                       </div>
                   </div>
                 </form>

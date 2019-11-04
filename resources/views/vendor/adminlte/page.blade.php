@@ -101,25 +101,35 @@
             </nav>
         </header>
 
-        {{--@if(config('adminlte.layout') != 'top-nav')--}}
-        <!-- Left side column. contains the logo and sidebar -->
-        {{--<aside class="main-sidebar">--}}
+        @if( isset(Auth::user()->role->name ) )
+            @if(Auth::user()->role->name == "admin")
+                @if(config('adminlte.layout') != 'top-nav')
+                <!-- Left side column. contains the logo and sidebar -->
+                <aside class="main-sidebar">
 
-            <!-- sidebar: style can be found in sidebar.less -->
-            {{--<section class="sidebar">--}}
+                    <!-- sidebar: style can be found in sidebar.less -->
+                    <section class="sidebar">
 
-                <!-- Sidebar Menu -->
-                {{--<ul class="sidebar-menu" data-widget="tree">--}}
-                    {{--@each('adminlte::partials.menu-item', $adminlte->menu(), 'item')--}}
-                {{--</ul>--}}
-                <!-- /.sidebar-menu -->
-            {{--</section>--}}
-            <!-- /.sidebar -->
-        {{--</aside>--}}
-        {{--@endif--}}
+                        <!-- Sidebar Menu -->
+                        <ul class="sidebar-menu" data-widget="tree">
+                            @each('adminlte::partials.menu-item', $adminlte->menu(), 'item')
+                        </ul>
+                        <!-- /.sidebar-menu -->
+                    </section>
+                    <!-- /.sidebar -->
+                </aside>
+                @endif
+            @endif
+        @endif
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper" style="margin-left:5%;">
+        @if(isset(Auth::user()->role->name))
+          @if(Auth::user()->role->name == "admin")
+            <div class="content-wrapper">
+          @else
+            <div class="content-wrapper" style="margin-left:5%;">
+          @endif
+        @endif
             @if(config('adminlte.layout') == 'top-nav')
             <div class="container">
             @endif
