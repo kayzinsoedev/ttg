@@ -32,7 +32,7 @@ class JobController extends Controller
            'name' => 'required',
            // 'place' => 'required',
            'quantity' => 'required',
-           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+           'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
            'attach_file'=> 'mimes:doc,docx'
         ]);
 
